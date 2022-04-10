@@ -1,16 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { toggleVisibleProfile } from "../store/profile";
-import { updateProfile } from "../store/profile";
+import { ProfileForm } from "../components";
 
 export const ProfilePage = () => {
   const dispatch = useDispatch();
-  const { firstName, lastName, isVisibleProfile } = useSelector(
+  const { firstName, lastName, isVisibleProfile, phone } = useSelector(
     (state) => state.profile
   );
- /* const { name, number } = useSelector (
-    (state) =>state.profile
-  );*/
-
 
   return (
     <div>
@@ -27,39 +23,14 @@ export const ProfilePage = () => {
           <h3>
             lastName: <span>{lastName}</span>
           </h3>
-        </>
-      )}
-    </div>
-  );
-
-};
-
-
-export const ProfileData = () => {
-  const dispatch = useDispatch();
-  const { name, number, isVisibleProfile } = useSelector (
-    (state) =>state.profile
-  );
-
-
-  return (
-    <div>
-      <h1>ProfilePage</h1>
-      <button onClick={() => dispatch(updateProfile())}>
-        toggle profile visible
-      </button>
-
-      {isVisibleProfile && (
-        <>
           <h3>
-            name: <span>{name}</span>
-          </h3>
-          <h3>
-            number: <span>{number}</span>
+            phone: <span>{phone}</span>
           </h3>
         </>
       )}
+
+      <hr />
+      <ProfileForm firstName={firstName} lastName={lastName} phone={phone} />
     </div>
   );
-
 };
